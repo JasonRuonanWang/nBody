@@ -1,12 +1,12 @@
 CCFLAGS_MAC = -std=c99 -framework GLUT -framework OpenGL -framework Cocoa -I/usr/X11/include
 LDFLAGS_MAC = -lglut -lgl -lglu -lX11 -L/usr/X11/lib
 
-CCFLAGS_LIN = -std=c99
+CCFLAGS_LIN =
 LDFLAGS_LIN = -lglut -lGL -lGLU -lX11 -lm
 
 CC = clang
 
-APP = nbody 
+APP = 3body 
 
 all: $(APP)
 	@echo Make done
@@ -18,5 +18,5 @@ clean:
 	@rm -f *.o $(APP)
 
 
-nbody: nbody.c
-	$(CC) nbody.c $(LDFLAGS_LIN) $(CCFLAGS_LIN) -o nbody
+3body: nbody.c 3body.c
+	$(CC) nbody.c 3body.c $(LDFLAGS_LIN) $(CCFLAGS_LIN) -o $(APP)

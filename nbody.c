@@ -5,8 +5,10 @@
 #include <time.h>
 #include <GL/gl.h>
 #include <GL/glut.h>
+#include "nbody.h"
 
-#define M_PI        3.14159265358979323846264338327950288   /* pi */
+#define MAX_CHAR 256
+//#define M_PI        3.14159265358979323846264338327950288   /* pi */
 #define WIDTH 800
 #define HEIGHT 800
 #define POINT_SIZE 1
@@ -28,19 +30,6 @@
 
 #define square(x) ((x)*(x))
 
-typedef struct {
-    double mass;
-    double X;
-    double Y;
-    double Z;
-    double Vx;
-    double Vy;
-    double Vz;
-    double Fx;
-    double Fy;
-    double Fz;
-    int color;
-} Particle;
 
 double previousTime, eyeTheta, eyePhi, eyeRho;
 float look[3];
@@ -48,8 +37,6 @@ int windowWidth, windowHeight, upY;
 
 double SCALE = 1;
 
-Particle *body;
-int N;
 
 /*
  * Initialization of graphics
@@ -99,6 +86,8 @@ void Init(void) {
  * This function redraws the screen after the positions of particles
  * have been updated
  */
+
+
 void Display(void) {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     glMatrixMode(GL_MODELVIEW);
@@ -107,7 +96,7 @@ void Display(void) {
             eyeRho * sin(eyePhi) * cos(eyeTheta),
             look[0], look[1], look[2], 0, upY, 0);
 
-    int i;
+    int i,j;
     for (i = 0; i < N; i++) {
         //glClearColor(1.0,1.0,1.0,0.0);
         glColor3f(0.0f, body[i].mass/1e11*100, 0.0f);
@@ -116,6 +105,21 @@ void Display(void) {
         glTranslated(SCALE*body[i].X, SCALE*body[i].Y, SCALE*body[i].Z);
         glutSolidSphere (BALL_SIZE, 10, 10);
         glPopMatrix(); // restore the previous matrix
+
+
+        char original_p[256];
+        char original_v[256];
+
+        sprintf(original_p, "X=%f, Y=%f, Z=%f", body[i].X, body[i].Y, body[i].Z);
+
+        glColor3f(0.4f, 0.8f, 100);
+
+        glRasterPos2f(-20,-20+i);
+        for(j=0; j<strlen(original_p); j++){
+            glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, original_p[j]);
+        }
+
+
     }
     glFlush();
 }
@@ -137,9 +141,7 @@ void Force(int a) {
     double distance;
     double con;
     double gd;
-
     body[a].Fx = body[a].Fy = body[a].Fz = 0;
-
     int b;
     for(b=0; b<N; ++b)
         if( b != a ){
@@ -283,9 +285,11 @@ void readFile(char *fileName) {
     fclose(file);
 }
 
+void genData(){
 
-// This is main function. Do not change it.
-int main(int argc, char** argv)
+}
+
+int nbody_main(int argc, char** argv)
 {
     glutInit(&argc, argv);
 
@@ -305,4 +309,5 @@ int main(int argc, char** argv)
     glutReshapeFunc(Reshape);
     Init();
     glutMainLoop();
+    return 0;
 }
