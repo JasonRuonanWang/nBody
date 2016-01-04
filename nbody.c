@@ -8,8 +8,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <time.h>
-#include <gl/Gl.h>
-#include <gl/glut.h>
+#include <GL/gl.h>
+#include <GL/glut.h>
 
 #define M_PI        3.14159265358979323846264338327950288   /* pi */
 #define WIDTH 800

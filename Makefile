@@ -1,22 +1,10 @@
-INCLUDE_PATH = -I/usr/X11/include 
-LIBRARY_PATH = -L/usr/X11/lib 
-CCFLAGS = -std=c99 -framework GLUT -framework OpenGL -framework Cocoa
-LDFLAGS = -lglut -lgl -lglu -lX11 -lpthread 
+CCFLAGS_MAC = -std=c99 -framework GLUT -framework OpenGL -framework Cocoa -I/usr/X11/include
+LDFLAGS_MAC = -lglut -lgl -lglu -lX11 -L/usr/X11/lib
 
-# the directories containing the OpenGL libraries, f90gl libraries, GLUT
-# libraries, and f90gl GLUT libraries
-OGLLIBDIR = -L/usr/X11/lib
+CCFLAGS_LIN = -std=c99
+LDFLAGS_LIN = -lglut -lGL -lGLU -lX11 -lm
 
-# the X11 libraries
-X11LIB = -framework GLUT -framework OpenGL -framework Cocoa
-
-# the f90 compiler flag for specifying the location of MOD files
-MODS = -I/usr/X11/include/GL
-
-# the directory containing the X11 libraries
-X11LIBDIR =
-
-GCC = gcc
+CC = gcc
 
 APP = nbody 
 
@@ -31,4 +19,4 @@ clean:
 
 
 nbody: nbody.c
-	$(GCC) nbody.c $(INCLUDE_PATH) $(LIBRARY_PATH) $(LDFLAGS) $(CCFLAGS) -o nbody
+	$(CC) nbody.c $(LDFLAGS_LIN) $(CCFLAGS_LIN) -o nbody
