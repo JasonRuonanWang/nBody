@@ -130,6 +130,7 @@ void Display(void) {
         }
 
     }
+    glutSwapBuffers();
     glFlush();
 }
 
