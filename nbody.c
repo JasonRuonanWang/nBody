@@ -9,8 +9,8 @@
 
 #define MAX_CHAR 256
 //#define M_PI        3.14159265358979323846264338327950288   /* pi */
-#define WIDTH 800
-#define HEIGHT 800
+#define WIDTH 500
+#define HEIGHT 500
 #define POINT_SIZE 1
 #define POSITION_X 112
 #define POSITION_Y 20
@@ -113,18 +113,18 @@ void Display(void) {
 
         sprintf(original_p, "X=%f, Y=%f, Z=%f", body_origin[i].X, body_origin[i].Y, body_origin[i].Z);
         sprintf(original_v, "Vx=%f, Vy=%f, Vz=%f", body_origin[i].Vx, body_origin[i].Vy, body_origin[i].Vz);
-        glRasterPos2f(-40,-40+i*2);
+        glRasterPos2f(-40,-40+i*4);
         for(j=0; j<strlen(original_p); j++){
             glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, original_p[j]);
         }
-        glRasterPos2f(-40,-30+i*2);
+        glRasterPos2f(-40,-40+(i+3)*4);
         for(j=0; j<strlen(original_v); j++){
             glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, original_v[j]);
         }
 
         char current_p[256];
         sprintf(current_p, "X=%f, Y=%f, Z=%f", body[i].X, body[i].Y, body[i].Z);
-        glRasterPos2f(-20,20+i*2);
+        glRasterPos2f(-40,30+i*4);
         for(j=0; j<strlen(current_p); j++){
             glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, current_p[j]);
         }
@@ -194,9 +194,6 @@ void Compute() {
     }
     for(a=0; a<N; a++) {
         Position(a);
-    }
-    for(a=0; a<1000000; a++){
-        double x = 999.999 * 444.444;
     }
 }
 
@@ -305,7 +302,7 @@ int nbody_main(int argc, char** argv)
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
     glutInitWindowSize(WIDTH, HEIGHT);
     glutInitWindowPosition(POSITION_X, POSITION_Y);
-    glutCreateWindow("N-Body Parallel");
+    glutCreateWindow("N-Body");
     glutDisplayFunc(Display);
     glutIdleFunc(Animate);
     glutKeyboardFunc(KeyBoard);

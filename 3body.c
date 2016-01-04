@@ -3,7 +3,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define BOUNDARY 100.0
+#define BOUNDARY 50.0
+#define RND_P 10.0
+#define RND_V 2.0
 
 double random_double(double max){
     int r = rand();
@@ -16,13 +18,20 @@ void genData(){
     int i;
     for (i=0; i<N; i++){
         body[i].mass = 1e11;
-        body[i].X= random_double(10);
-        body[i].Y= random_double(10);
+        body[i].X= random_double(RND_P);
+        body[i].Y= random_double(RND_P);
         body[i].Z= 0;
-        body[i].Vx= random_double(1);
-        body[i].Vy= random_double(1);
+//        body[i].Z= random_double(RND_P);
+        body[i].Vx= random_double(RND_V);
+        body[i].Vy= random_double(RND_V);
         body[i].Vz= 0;
+//        body[i].Vz= random_double(RND_V);
+    }
+    body[2].Vx= 0 - body[0].Vx - body[1].Vx;
+    body[2].Vy= 0 - body[0].Vy - body[1].Vy;
+    body[2].Vz= 0 - body[0].Vz - body[1].Vz;
 
+    for (i=0; i<N; i++){
         body_origin[i].mass = body[i].mass;
         body_origin[i].X = body[i].X;
         body_origin[i].Y = body[i].Y;
