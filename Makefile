@@ -4,7 +4,7 @@ LDFLAGS_MAC = -lglut -lgl -lglu -lX11 -L/usr/X11/lib
 CCFLAGS_LIN = -std=c99
 LDFLAGS_LIN = -lglut -lGL -lGLU -lX11 -lm
 
-CC = gcc
+CC = clang
 
 APP = nbody 
 
