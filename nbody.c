@@ -112,11 +112,11 @@ void Display(void) {
         glColor3f(0.4f, 0.8f, 100);
 
         sprintf(original_p, "X=%f, Y=%f, Z=%f", body_origin[i].X, body_origin[i].Y, body_origin[i].Z);
-        sprintf(original_v, "Vx=%f, Vy=%f, Vz=%f", body_origin[i].Vx, body_origin[i].Vy, body_origin[i].Vz);
         glRasterPos2f(-40,-40+i*4);
         for(j=0; j<strlen(original_p); j++){
             glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, original_p[j]);
         }
+        sprintf(original_v, "Vx=%f, Vy=%f, Vz=%f", body_origin[i].Vx, body_origin[i].Vy, body_origin[i].Vz);
         glRasterPos2f(-40,-40+(i+3)*4);
         for(j=0; j<strlen(original_v); j++){
             glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, original_v[j]);
@@ -128,7 +128,13 @@ void Display(void) {
         for(j=0; j<strlen(current_p); j++){
             glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, current_p[j]);
         }
+    }
 
+    char round_char[256];
+    sprintf(round_char, "round=%ld", round_count);
+    glRasterPos2f(-40,-40+6*4);
+    for(j=0; j<strlen(round_char); j++){
+        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, round_char[j]);
     }
     glutSwapBuffers();
     glFlush();

@@ -20,7 +20,7 @@ typedef struct {
 Particle *body;
 Particle *body_origin;
 int N;
-bool running;
+unsigned long round_count;
 
 int nbody_main(int argc, char **argv);
 void genData();

@@ -5,7 +5,7 @@
 
 #define BOUNDARY 50.0
 #define RND_P 10.0
-#define RND_V 2.0
+#define RND_V 1.0
 
 double random_double(double max){
     int r = rand();
@@ -15,6 +15,7 @@ double random_double(double max){
 }
 
 void genData(){
+    round_count++;
     int i;
     for (i=0; i<N; i++){
         body[i].mass = 1e11;
@@ -59,14 +60,12 @@ int main(int argc, char**argv){
         return -1;
     }
     N=3;
+    round_count=0;
     body = (Particle*) calloc((size_t)N, sizeof(Particle));
     body_origin = (Particle*) calloc((size_t)N, sizeof(Particle));
     srand((unsigned)time(NULL));
-    running =true;
-    while(running){
-        genData();
-        nbody_main(argc, argv);
-    }
+    genData();
+    nbody_main(argc, argv);
 
     return 0;
 }
