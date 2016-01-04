@@ -1,3 +1,8 @@
+#include <stdbool.h>
+
+#ifndef NBODY_H
+#define NBODY_H
+
 typedef struct {
     double mass;
     double X;
@@ -13,9 +18,14 @@ typedef struct {
 } Particle;
 
 Particle *body;
+Particle *body_origin;
 int N;
+bool running;
 
 int nbody_main(int argc, char **argv);
+void genData();
+void Judge();
 
+#endif
 
 

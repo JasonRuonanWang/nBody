@@ -19,4 +19,6 @@ clean:
 
 
 3body: nbody.c 3body.c
-	$(CC) nbody.c 3body.c $(LDFLAGS_LIN) $(CCFLAGS_LIN) -o $(APP)
+	$(CC) -g nbody.c 3body.c $(LDFLAGS_LIN) $(CCFLAGS_LIN) -o $(APP)
+
+re: clean all

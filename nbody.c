@@ -109,16 +109,25 @@ void Display(void) {
 
         char original_p[256];
         char original_v[256];
-
-        sprintf(original_p, "X=%f, Y=%f, Z=%f", body[i].X, body[i].Y, body[i].Z);
-
         glColor3f(0.4f, 0.8f, 100);
 
-        glRasterPos2f(-20,-20+i);
+        sprintf(original_p, "X=%f, Y=%f, Z=%f", body_origin[i].X, body_origin[i].Y, body_origin[i].Z);
+        sprintf(original_v, "Vx=%f, Vy=%f, Vz=%f", body_origin[i].Vx, body_origin[i].Vy, body_origin[i].Vz);
+        glRasterPos2f(-40,-40+i*2);
         for(j=0; j<strlen(original_p); j++){
             glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, original_p[j]);
         }
+        glRasterPos2f(-40,-30+i*2);
+        for(j=0; j<strlen(original_v); j++){
+            glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, original_v[j]);
+        }
 
+        char current_p[256];
+        sprintf(current_p, "X=%f, Y=%f, Z=%f", body[i].X, body[i].Y, body[i].Z);
+        glRasterPos2f(-20,20+i*2);
+        for(j=0; j<strlen(current_p); j++){
+            glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, current_p[j]);
+        }
 
     }
     glFlush();
@@ -197,6 +206,7 @@ void Compute() {
 void Animate(void) {
     Compute(); //Compute and update new positions for the time step
     Display(); // Display needs to be called to redraw the screen
+    Judge();
 }
 
 /*
@@ -285,21 +295,13 @@ void readFile(char *fileName) {
     fclose(file);
 }
 
-void genData(){
-
-}
-
 int nbody_main(int argc, char** argv)
 {
     glutInit(&argc, argv);
 
-    if (argc < 2) {
-        puts("Please provide the filename, i.e. \'nbody bodiesfield.dat\'");
-        exit(EXIT_SUCCESS);
-    }
     if (argc >= 2) readFile(argv[1]);
 
-    glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
     glutInitWindowSize(WIDTH, HEIGHT);
     glutInitWindowPosition(POSITION_X, POSITION_Y);
     glutCreateWindow("N-Body Parallel");
