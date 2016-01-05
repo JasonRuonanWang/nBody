@@ -14,6 +14,11 @@ double random_double(double max){
     return rd;
 }
 
+
+void reset(){
+    genData();
+}
+
 void genData(){
     round_count++;
     cycles=0;

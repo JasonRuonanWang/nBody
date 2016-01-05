@@ -248,6 +248,8 @@ void KeyBoard(unsigned char theKey, int mouseX, int mouseY) {
         SCALE *= 1.1;
     } else if (theKey == '-') {
         SCALE *= 0.9;
+    } else if (theKey == 'r' || theKey == 'R') {
+        reset();
     }
     if (sin(eyePhi) > 0) upY = 1;
     else upY = 1;

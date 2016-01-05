@@ -26,6 +26,7 @@ unsigned long cycles;
 int nbody_main(int argc, char **argv);
 void genData();
 void Judge();
+void reset();
 
 #endif
 
