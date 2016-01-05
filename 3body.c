@@ -16,6 +16,7 @@ double random_double(double max){
 
 void genData(){
     round_count++;
+    cycles=0;
     int i;
     for (i=0; i<N; i++){
         body[i].mass = 1e11;
