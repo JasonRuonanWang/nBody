@@ -61,6 +61,7 @@ int main(int argc, char**argv){
     }
     N=3;
     round_count=0;
+    cycles=0;
     body = (Particle*) calloc((size_t)N, sizeof(Particle));
     body_origin = (Particle*) calloc((size_t)N, sizeof(Particle));
     srand((unsigned)time(NULL));

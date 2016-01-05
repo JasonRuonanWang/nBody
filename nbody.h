@@ -21,6 +21,7 @@ Particle *body;
 Particle *body_origin;
 int N;
 unsigned long round_count;
+unsigned long cycles;
 
 int nbody_main(int argc, char **argv);
 void genData();

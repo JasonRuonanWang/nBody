@@ -131,7 +131,7 @@ void Display(void) {
     }
 
     char round_char[256];
-    sprintf(round_char, "round=%ld", round_count);
+    sprintf(round_char, "round=%ld, life=%ld", round_count, cycles);
     glRasterPos2f(-40,-40+6*4);
     for(j=0; j<strlen(round_char); j++){
         glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, round_char[j]);
@@ -201,6 +201,7 @@ void Compute() {
     for(a=0; a<N; a++) {
         Position(a);
     }
+    cycles++;
 }
 
 /*
