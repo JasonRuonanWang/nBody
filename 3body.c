@@ -44,6 +44,8 @@ void genData(){
     body[2].Vz= 0 - body[0].Vz - body[1].Vz;
 
 
+/*
+
     // Triangle
     body[0].X = 1*c; body[0].Y = 0*c; body[0].Z = 0;
     body[1].X =-1*c; body[1].Y = 0*c; body[1].Z = 0;
@@ -63,6 +65,7 @@ void genData(){
     body[1].Vx = -body[2].Vx/2; body[1].Vy = -body[2].Vy/2; body[1].Vz = 0;
     body[0].Vx = body[1].Vx; body[0].Vy = body[1].Vy; body[0].Vz = 0;
 
+    */
 
     for (i=0; i<N; i++){
         body_origin[i].mass = body[i].mass;
