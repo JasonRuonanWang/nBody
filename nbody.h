@@ -18,7 +18,7 @@ typedef struct {
 } Particle;
 
 Particle *body;
-Particle *body_origin;
+Particle *body_initial;
 int N;
 unsigned long round_count;
 unsigned long cycles;

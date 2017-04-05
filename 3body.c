@@ -19,11 +19,8 @@ double random_double(double max){
     return rd;
 }
 
-void reset(){
-    genData();
-}
 
-void genData(){
+void reset(){
     round_count++;
     cycles=0;
     int i;
@@ -67,25 +64,31 @@ void genData(){
     */
 
     for (i=0; i<N; i++){
-        body_origin[i].mass = body[i].mass;
-        body_origin[i].X = body[i].X;
-        body_origin[i].Y = body[i].Y;
-        body_origin[i].Z = body[i].Z;
-        body_origin[i].Vx = body[i].Vx;
-        body_origin[i].Vy = body[i].Vy;
-        body_origin[i].Vz = body[i].Vz;
+        body_initial[i].mass = body[i].mass;
+        body_initial[i].X = body[i].X;
+        body_initial[i].Y = body[i].Y;
+        body_initial[i].Z = body[i].Z;
+        body_initial[i].Vx = body[i].Vx;
+        body_initial[i].Vy = body[i].Vy;
+        body_initial[i].Vz = body[i].Vz;
     }
 }
 
 void Judge(){
     int i;
     for (i=0; i<N; i++){
-        if (body[i].X<-BOUNDARY || body[i].X>BOUNDARY)
-            genData();
-        if (body[i].Y<-BOUNDARY || body[i].Y>BOUNDARY)
-            genData();
-        if (body[i].Z<-BOUNDARY || body[i].Z>BOUNDARY)
-            genData();
+        if (body[i].X<-BOUNDARY
+                || body[i].X>BOUNDARY
+                || body[i].Y<-BOUNDARY
+                || body[i].Y>BOUNDARY
+                || body[i].Z<-BOUNDARY
+                || body[i].Z>BOUNDARY
+           ){
+            printf("round=%ld, life=%ld; ", round_count, cycles);
+            printf("X=%f, Y=%f, Z=%f; ", body_initial[i].X, body_initial[i].Y, body_initial[i].Z);
+            printf("Vx=%f, Vy=%f, Vz=%f\n", body_initial[i].Vx, body_initial[i].Vy, body_initial[i].Vz);
+            reset();
+        }
     }
 }
 
@@ -101,10 +104,11 @@ int main(int argc, char**argv){
     round_count=0;
     cycles=0;
     body = (Particle*) calloc((size_t)N, sizeof(Particle));
-    body_origin = (Particle*) calloc((size_t)N, sizeof(Particle));
+    body_initial = (Particle*) calloc((size_t)N, sizeof(Particle));
     srand((unsigned)time(NULL));
-    genData();
-    nbody_main(0, 0);
+    reset();
+//    nbody_main(0, 0);
+    nbody_main_xless();
 
     return 0;
 }

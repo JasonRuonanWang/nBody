@@ -111,12 +111,12 @@ void Display(void) {
         char original_v[256];
         glColor3f(0.4f, 0.8f, 100);
 
-        sprintf(original_p, "X=%f, Y=%f, Z=%f", body_origin[i].X, body_origin[i].Y, body_origin[i].Z);
+        sprintf(original_p, "X=%f, Y=%f, Z=%f", body_initial[i].X, body_initial[i].Y, body_initial[i].Z);
         glRasterPos2f(-40,-40+i*4);
         for(j=0; j<strlen(original_p); j++){
             glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, original_p[j]);
         }
-        sprintf(original_v, "Vx=%f, Vy=%f, Vz=%f", body_origin[i].Vx, body_origin[i].Vy, body_origin[i].Vz);
+        sprintf(original_v, "Vx=%f, Vy=%f, Vz=%f", body_initial[i].Vx, body_initial[i].Vy, body_initial[i].Vz);
         glRasterPos2f(-40,-40+(i+3)*4);
         for(j=0; j<strlen(original_v); j++){
             glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, original_v[j]);
@@ -322,6 +322,10 @@ int nbody_main(int argc, char** argv)
 }
 
 int nbody_main_xless(){
+    while(1){
+        Compute();
+        Judge();
+    }
 
     return 0;
 }
