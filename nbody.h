@@ -24,6 +24,7 @@ unsigned long round_count;
 unsigned long cycles;
 
 int nbody_main(int argc, char **argv);
+int nbody_main_xless();
 void genData();
 void Judge();
 void reset();

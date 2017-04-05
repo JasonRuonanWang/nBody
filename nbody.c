@@ -320,3 +320,11 @@ int nbody_main(int argc, char** argv)
     glutMainLoop();
     return 0;
 }
+
+int nbody_main_xless(){
+
+    return 0;
+}
+
+
+
