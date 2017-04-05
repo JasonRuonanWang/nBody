@@ -4,9 +4,9 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define BOUNDARY 50.0
-#define RND_P 10.0
-#define RND_V 1.0
+double BOUNDARY = 50.0;
+double RND_P = 10.0;
+double RND_V = 1.0;
 
 double c=10;
 double cv=5;
@@ -93,6 +93,10 @@ void Judge(){
 }
 
 int main(int argc, char**argv){
+    printf("aa\n");
+    srand(time(NULL));
+    printf("bb\n");
+
     if(argc == 2){
         cv = atof(argv[1]);
     }
