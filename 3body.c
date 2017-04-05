@@ -19,7 +19,6 @@ double random_double(double max){
     return rd;
 }
 
-
 void reset(){
     genData();
 }
