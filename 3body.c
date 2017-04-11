@@ -4,9 +4,9 @@
 #include <stdlib.h>
 #include <math.h>
 
-double BOUNDARY = 50.0;
+double BOUNDARY = 100.0;
 double RND_P = 10.0;
-double RND_V = 1.0;
+double RND_V = 5.0;
 
 double c=10;
 double cv=5;
@@ -28,12 +28,12 @@ void reset(){
         body[i].mass = 1e12;
         body[i].X= random_double(RND_P);
         body[i].Y= random_double(RND_P);
-        body[i].Z= 0;
-//        body[i].Z= random_double(RND_P);
+//        body[i].Z= 0;
+        body[i].Z= random_double(RND_P);
         body[i].Vx= random_double(RND_V);
         body[i].Vy= random_double(RND_V);
-        body[i].Vz= 0;
-//        body[i].Vz= random_double(RND_V);
+//        body[i].Vz= 0;
+        body[i].Vz= random_double(RND_V);
     }
     body[2].Vx= 0 - body[0].Vx - body[1].Vx;
     body[2].Vy= 0 - body[0].Vy - body[1].Vy;
@@ -61,7 +61,7 @@ void reset(){
     body[1].Vx = -body[2].Vx/2; body[1].Vy = -body[2].Vy/2; body[1].Vz = 0;
     body[0].Vx = body[1].Vx; body[0].Vy = body[1].Vy; body[0].Vz = 0;
 
-    */
+*/
 
     for (i=0; i<N; i++){
         body_initial[i].mass = body[i].mass;
@@ -93,9 +93,7 @@ void Judge(){
 }
 
 int main(int argc, char**argv){
-    printf("aa\n");
     srand(time(NULL));
-    printf("bb\n");
 
     if(argc == 2){
         cv = atof(argv[1]);
@@ -111,8 +109,8 @@ int main(int argc, char**argv){
     body_initial = (Particle*) calloc((size_t)N, sizeof(Particle));
     srand((unsigned)time(NULL));
     reset();
-//    nbody_main(0, 0);
     nbody_main_xless();
+    nbody_main(0, 0);
 
     return 0;
 }

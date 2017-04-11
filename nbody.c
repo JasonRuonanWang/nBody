@@ -322,7 +322,7 @@ int nbody_main(int argc, char** argv)
 }
 
 int nbody_main_xless(){
-    while(1){
+    while(cycles < 100000){
         Compute();
         Judge();
     }
