@@ -78,7 +78,6 @@ void Init(void) {
     look[1] = 0;
     look[2] = 0;
     gluPerspective(VIEW_ANGLE, displayRatio, WORLD_NEAR, WORLD_FAR);
-    //    GLKMatrix4MakePerspective(VIEW_ANGLE, displayRatio, WORLD_NEAR, WORLD_FAR);
 
 }
 

@@ -1,4 +1,4 @@
-CCFLAGS_MAC = -framework GLUT -framework OpenGL -framework Cocoa -I/usr/X11/include
+CCFLAGS_MAC = -framework GLUT -framework OpenGL -framework Cocoa -I/usr/X11/include -Wno-deprecated
 LDFLAGS_MAC =-framework OpenGL -framework GLUT -framework Cocoa
 
 CCFLAGS_LIN =
