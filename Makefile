@@ -3,7 +3,9 @@ LDFLAGS_MAC =-framework OpenGL -framework GLUT -framework Cocoa
 
 CCFLAGS_LIN =
 LDFLAGS_LIN =-lglut -lGL -lGLU -lX11 -lm
-CC = clang
+
+CC=clang
+CC=gcc-10
 
 all: 3body fileloader
 	@echo Make done

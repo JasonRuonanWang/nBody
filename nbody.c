@@ -30,6 +30,11 @@
 
 #define square(x) ((x)*(x))
 
+Particle *body;
+Particle *body_initial;
+int N;
+unsigned long round_count;
+unsigned long cycles;
 
 double previousTime, eyeTheta, eyePhi, eyeRho;
 float look[3];

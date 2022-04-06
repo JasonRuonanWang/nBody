@@ -17,11 +17,11 @@ typedef struct {
     int color;
 } Particle;
 
-Particle *body;
-Particle *body_initial;
-int N;
-unsigned long round_count;
-unsigned long cycles;
+extern Particle *body;
+extern Particle *body_initial;
+extern int N;
+extern unsigned long round_count;
+extern unsigned long cycles;
 
 int nbody_main(int argc, char **argv);
 void genData();

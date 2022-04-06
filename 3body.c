@@ -4,7 +4,6 @@
 #include <stdlib.h>
 #include <math.h>
 
-
 char mode='x';
 char figure='r';
 
