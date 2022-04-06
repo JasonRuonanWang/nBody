@@ -41,6 +41,9 @@ void reset(){
     if(figure == 't')
     {
         // Triangle
+        body[0].mass = cm;
+        body[1].mass = cm;
+        body[2].mass = cm;
         body[0].X = 1*c; body[0].Y = 0*c; body[0].Z = 0;
         body[1].X =-1*c; body[1].Y = 0*c; body[1].Z = 0;
         body[2].X = 0*c; body[2].Y = sqrt(3.0)*c; body[2].Z = 0;
@@ -148,9 +151,6 @@ int main(int argc, char**argv){
         figure = argv[2][0];
     }
 
-    if (argc > 2){
-        return -1;
-    }
     N=3;
     round_count=0;
     cycles=0;
