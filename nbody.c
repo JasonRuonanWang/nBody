@@ -113,19 +113,19 @@ void Display(void) {
         sprintf(original_p, "X=%f, Y=%f, Z=%f", body_initial[i].X, body_initial[i].Y, body_initial[i].Z);
         glRasterPos2f(-40,-40+i*4);
         for(j=0; j<strlen(original_p); j++){
-            glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, original_p[j]);
+            glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12, original_p[j]);
         }
         sprintf(original_v, "Vx=%f, Vy=%f, Vz=%f", body_initial[i].Vx, body_initial[i].Vy, body_initial[i].Vz);
         glRasterPos2f(-40,-40+(i+3)*4);
         for(j=0; j<strlen(original_v); j++){
-            glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, original_v[j]);
+            glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12, original_v[j]);
         }
 
         char current_p[256];
         sprintf(current_p, "X=%f, Y=%f, Z=%f", body[i].X, body[i].Y, body[i].Z);
         glRasterPos2f(-40,30+i*4);
         for(j=0; j<strlen(current_p); j++){
-            glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, current_p[j]);
+            glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12, current_p[j]);
         }
     }
 
@@ -133,7 +133,7 @@ void Display(void) {
     sprintf(round_char, "round=%ld, life=%ld", round_count, cycles);
     glRasterPos2f(-40,-40+6*4);
     for(j=0; j<strlen(round_char); j++){
-        glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, round_char[j]);
+        glutBitmapCharacter(GLUT_BITMAP_HELVETICA_12, round_char[j]);
     }
     glutSwapBuffers();
     glFlush();
@@ -275,9 +275,11 @@ void readFile(char *fileName) {
     file = fopen(fileName, "rt");
     N = atoi(fgets(line, LINE_SIZE, file));
     body = (Particle*) calloc((size_t)N, sizeof(Particle));
+    body_initial = (Particle*) calloc((size_t)N, sizeof(Particle));
     puts("----------------------Initial field-------------------------------");
     int i;
     for (i=0; i<N; ++i)
+    {
         if(fgets(line, LINE_SIZE, file) != NULL){
             token = strtok(line, ",; ");
             body[i].mass = atof(token);
@@ -295,6 +297,9 @@ void readFile(char *fileName) {
             body[i].Vz = atof(token);
             PrintBody(i);
         }
+    }
+
+    memcpy(body_initial, body, N*sizeof(Particle));
     puts("--------------------------------------------------------------");
     puts("Use:\n X - exit\n I, J, K, M - rotate\n W, Z, A, S - move to view"
             " point\n ./, - zoom in/out\n +/- - scaled zoom in/out\n");
@@ -317,15 +322,6 @@ int nbody_main(int argc, char** argv)
     glutReshapeFunc(Reshape);
     Init();
     glutMainLoop();
-    return 0;
-}
-
-int nbody_main_xless(){
-    while(cycles < 100000){
-        Compute();
-        Judge();
-    }
-
     return 0;
 }
 

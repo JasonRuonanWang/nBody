@@ -5,19 +5,18 @@ CCFLAGS_LIN =
 LDFLAGS_LIN =-lglut -lGL -lGLU -lX11 -lm
 CC = clang
 
-APP = 3body
-
-all: $(APP)
+all: 3body fileloader
 	@echo Make done
 
-#%: %.c
-#	gcc $^ -o $@ $(INCLUDE_PATH) $(CCFLAGS) $(LIBRARY_PATH) $(LDFLAGS)
-
 clean:
-	@rm -rf *.o $(APP) *.dSYM
+	@rm -rf *.o 3body fileloader *.dSYM
 
 
 3body: nbody.c 3body.c
-	$(CC) nbody.c 3body.c $(LDFLAGS_MAC) $(CCFLAGS_MAC) -o $(APP)
+	$(CC) nbody.c 3body.c $(LDFLAGS_MAC) $(CCFLAGS_MAC) -o 3body
 
-re: clean all
+fileloader: nbody.c fileloader.c
+	$(CC) nbody.c fileloader.c $(LDFLAGS_MAC) $(CCFLAGS_MAC) -o fileloader
+
+re: clean
+	make -j all
