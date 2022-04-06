@@ -8,12 +8,12 @@ char mode='x';
 char figure='r';
 
 double BOUNDARY = 100.0;
-double BOUNDARY2v1 = 1000;
+double BOUNDARY2v1 = 10000;
 double RND_P = 10.0;
 double RND_V = 5.0;
 
 double c=2;
-double cv=2.4;
+double cv=2.2;
 double cm=1e12;
 
 double random_double(double max){
@@ -104,9 +104,7 @@ void Judge(){
                 || body[i].Z<-BOUNDARY
                 || body[i].Z>BOUNDARY
            ){
-            printf("round=%ld, life=%ld; ", round_count, cycles);
-            printf("X=%f, Y=%f, Z=%f; ", body_initial[i].X, body_initial[i].Y, body_initial[i].Z);
-            printf("Vx=%f, Vy=%f, Vz=%f\n", body_initial[i].Vx, body_initial[i].Vy, body_initial[i].Vz);
+            dump();
             reset();
         }
     }
@@ -114,17 +112,29 @@ void Judge(){
     double s02 = distance(body[0].X, body[0].Y, body[0].Z, body[2].X, body[2].Y, body[2].Z);
     double s12 = distance(body[1].X, body[1].Y, body[1].Z, body[2].X, body[2].Y, body[2].Z);
 
+//    printf("s01=%f, s02=%f, s12=%f\n", s01, s02, s12);
+
     double s0102 = fabs(s01 - s02);
     double s0112 = fabs(s01 - s12);
     double s0212 = fabs(s02 - s12);
 
-    if(s0102 < 0.0000001) s0102 = 0.001;
-    if(s0112 < 0.0000001) s0112 = 0.001;
-    if(s0212 < 0.0000001) s0212 = 0.001;
+    if(s0102 < 0.001) s0102 = 0.001;
+    if(s0112 < 0.001) s0112 = 0.001;
+    if(s0212 < 0.001) s0212 = 0.001;
+
+//    printf("s0102=%f, s0112=%f, s0212=%f\n", s0102, s0112, s0212);
 
     double ss0 = s0102 / s0112;
     double ss1 = s0102 / s0212;
     double ss2 = s0112 / s0212;
+
+//    printf("ss0=%f, ss1=%f, ss2=%f\n", ss0, ss1, ss2);
+
+    if(ss0<1) ss0 = 1 / ss0;
+    if(ss1<1) ss1 = 1 / ss1;
+    if(ss2<1) ss2 = 1 / ss2;
+
+//    printf("ss0=%f, ss1=%f, ss2=%f\n", ss0, ss1, ss2);
 
     if(ss0 > BOUNDARY2v1 && ss1 > BOUNDARY2v1){
         dump();
